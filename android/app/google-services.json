@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "709874851085",
+    "firebase_url": "https://applembrancasdeamor.firebaseio.com",
+    "project_id": "applembrancasdeamor",
+    "storage_bucket": "applembrancasdeamor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709874851085:android:cf6e98fa054f0a4ae56444",
+        "android_client_info": {
+          "package_name": "souza.com.app_lembrancas_de_amor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709874851085-gc5eph2bv5nrdsrpa6n90c3le4m40spm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2R3RFuCD2PMnSov-Tvwv6FzTDEeSah3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709874851085-gc5eph2bv5nrdsrpa6n90c3le4m40spm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

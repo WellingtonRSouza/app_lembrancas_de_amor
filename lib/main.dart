@@ -11,7 +11,6 @@ import 'package:app_lembrancas_de_amor/screens/login/login_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/product/product_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/select_product/select_product_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/signup/signup_screen.dart';
-import 'package:app_lembrancas_de_amor/services/cepaberto_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

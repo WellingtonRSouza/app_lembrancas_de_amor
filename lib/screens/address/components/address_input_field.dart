@@ -15,6 +15,7 @@ class AddressInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     final cartManager = context.watch<CartManager>();
+
     String emptyValidator(String text) =>
         text.isEmpty ? 'Campo obrigatório' : null;
 
@@ -43,7 +44,7 @@ class AddressInputField extends StatelessWidget {
                   hintText: '123',
                 ),
                 inputFormatters: [
-                  WhitelistingTextInputFormatter.digitsOnly,
+                  FilteringTextInputFormatter.digitsOnly,
                 ],
                 keyboardType: TextInputType.number,
                 validator: emptyValidator,

@@ -19,6 +19,8 @@ class CartManager extends ChangeNotifier  {
   num productsPrice = 0.0;
   num deliveryPrice;
 
+  num get totalPrice => productsPrice + (deliveryPrice ?? 0);
+
   final Firestore firestore = Firestore.instance;
 
   void updateUser(UserManager userManager){
@@ -91,6 +93,8 @@ class CartManager extends ChangeNotifier  {
     }
     return true;
   }
+
+  bool get isAddressValid => address != null && deliveryPrice != null;
 
   //ADDRESS
 

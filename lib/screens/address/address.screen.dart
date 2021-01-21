@@ -1,4 +1,7 @@
+import 'package:app_lembrancas_de_amor/common/price_card.dart';
+import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'components/address.card.dart';
 
@@ -13,6 +16,16 @@ class AddressScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           AddressCard(),
+          Consumer<CartManager>(
+              builder: (_, cartManager, __){
+                return PriceCard(
+                  buttonText: 'Continuar para o Pagamento',
+                  onPressed: cartManager.isAddressValid ? (){
+
+                  } : null,
+                );
+              }
+          )
         ],
       ),
     );

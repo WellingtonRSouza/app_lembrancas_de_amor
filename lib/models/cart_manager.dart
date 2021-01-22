@@ -21,6 +21,13 @@ class CartManager extends ChangeNotifier  {
 
   num get totalPrice => productsPrice + (deliveryPrice ?? 0);
 
+  bool _loading = false;
+  bool get loading => _loading;
+  set loading(bool value){
+    _loading = value;
+    notifyListeners();
+  }
+
   final Firestore firestore = Firestore.instance;
 
   void updateUser(UserManager userManager){
@@ -100,6 +107,7 @@ class CartManager extends ChangeNotifier  {
 
   Future<void> getAddress(String cep) async{
     final cepAbertoService = CepAbertoService();
+    loading = true;
 
     try {
       final cepAbertoAddress = await cepAbertoService.getAddressFromCep(cep);
@@ -114,21 +122,23 @@ class CartManager extends ChangeNotifier  {
           lat: cepAbertoAddress.latitude,
           long: cepAbertoAddress.longitude,
         );
-        notifyListeners();
       }
+      loading = false;
     } catch(e){
-      debugPrint(e.toString());
+      loading = false;
+      return Future.error('CEP Inválido');
     }
-
   }
 
   Future<void> setAddress(Address address) async{
+    loading = true;
+
     this.address = address;
 
     if(await calculateDelivery(address.lat, address.long)){
-      print('price $deliveryPrice');
-      notifyListeners();
+      loading = false;
     } else {
+      loading = false;
       return Future.error('Endereço fora do Raio de Entrega :(');
     }
 

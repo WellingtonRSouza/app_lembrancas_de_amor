@@ -15,9 +15,9 @@ class CartTile extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: cartProduct,
       child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             children: <Widget>[
               SizedBox(
@@ -35,7 +35,7 @@ class CartTile extends StatelessWidget {
                         cartProduct.product.name,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 17,
+                          fontSize: 17.0,
                         ),
                       ),
                       Padding(
@@ -46,8 +46,8 @@ class CartTile extends StatelessWidget {
                         ),
                       ),
                       Consumer<CartProduct>(
-                          builder: (_, cartProduct, __){
-                            if(cartProduct.hasStock)
+                        builder: (_, cartProduct, __){
+                          if(cartProduct.hasStock)
                             return Text(
                               'R\$ ${cartProduct.unitPrice.toStringAsFixed(2)}',
                               style: TextStyle(
@@ -56,17 +56,16 @@ class CartTile extends StatelessWidget {
                                   fontWeight: FontWeight.bold
                               ),
                             );
-                            else
-                              return Text(
-                                  'Sem Estoque',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold
+                          else
+                            return Text(
+                              'Sem estoque suficiente',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12,
                               ),
                             );
-                          }
-                      ),
+                        },
+                      )
                     ],
                   ),
                 ),
@@ -86,19 +85,18 @@ class CartTile extends StatelessWidget {
                       ),
                       CustomIconButton(
                         iconData: Icons.remove,
-                        color: cartProduct.quantity >  1 ?
+                        color: cartProduct.quantity > 1 ?
                         Theme.of(context).primaryColor : Colors.red,
                         onTap: cartProduct.decrement,
                       ),
                     ],
                   );
-                }
-              ),
+                },
+              )
             ],
           ),
         ),
-      )
-
+      ),
     );
   }
 }

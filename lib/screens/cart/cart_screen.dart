@@ -27,11 +27,12 @@ class CartScreen extends StatelessWidget {
               title: 'Nenhum produto no carrinho!',
             );
           }
+
           return ListView(
             children: <Widget>[
               Column(
                 children: cartManager.items.map(
-                    (cartProduct) => CartTile(cartProduct)
+                        (cartProduct) => CartTile(cartProduct)
                 ).toList(),
               ),
               PriceCard(
@@ -42,8 +43,9 @@ class CartScreen extends StatelessWidget {
               ),
             ],
           );
-         },
-        ),
-      );
+        },
+      ),
+    );
   }
 }
+

@@ -1,3 +1,5 @@
+import 'package:app_lembrancas_de_amor/common/empty.card.dart';
+import 'package:app_lembrancas_de_amor/common/login.card.dart';
 import 'package:app_lembrancas_de_amor/common/price_card.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,16 @@ class CartScreen extends StatelessWidget {
       ),
       body: Consumer<CartManager>(
         builder: (_, cartManager, __){
+          if(cartManager.user == null){
+            return LoginCard();
+          }
+
+          if(cartManager.items.isEmpty){
+            return EmptyCard(
+              iconData: Icons.remove_shopping_cart,
+              title: 'Nenhum produto no carrinho!',
+            );
+          }
           return ListView(
             children: <Widget>[
               Column(

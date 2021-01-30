@@ -1,6 +1,7 @@
 import 'package:app_lembrancas_de_amor/models/admin_users_manager.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/home_manager.dart';
+import 'package:app_lembrancas_de_amor/models/orders_manager.dart';
 import 'package:app_lembrancas_de_amor/models/product_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
 import 'package:app_lembrancas_de_amor/screens/address/address.screen.dart';
@@ -45,6 +46,12 @@ class MyApp extends StatelessWidget {
           update: (_, userManager, cartManager) =>
             cartManager..updateUser(userManager),
         ),
+        ChangeNotifierProxyProvider<UserManager, OrdersManager>(create: (_) => OrdersManager(),
+          lazy: false,
+          update: (_, userManager, ordersManager) =>
+          ordersManager..updateUser(userManager.user),
+        ),
+
         ChangeNotifierProxyProvider<UserManager, AdminUsersManager>(
             create: (_) => AdminUsersManager(),
             lazy: false,
@@ -104,7 +111,8 @@ class MyApp extends StatelessWidget {
             case'/base':
             default :
               return MaterialPageRoute(
-                  builder: (_) => BaseScreen()
+                builder: (_) => BaseScreen(),
+                settings: settings
               );
           }
         },

@@ -3,7 +3,6 @@ import 'package:app_lembrancas_de_amor/models/home_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'components/add_section_widget.dart';
 import 'components/section_list.dart';
 import 'components/section_staggered.dart';

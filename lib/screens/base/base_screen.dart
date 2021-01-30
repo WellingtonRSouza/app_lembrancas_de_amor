@@ -3,6 +3,7 @@ import 'package:app_lembrancas_de_amor/models/page_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
 import 'package:app_lembrancas_de_amor/screens/admin_users/admin_users_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/home/home_screen.dart';
+import 'package:app_lembrancas_de_amor/screens/orders/orders.screen.dart';
 import 'package:app_lembrancas_de_amor/screens/products/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,12 +29,8 @@ class _BaseScreenState extends State<BaseScreen> {
             children: <Widget>[
               HomeScreen(),
               ProductsScreen(),
+              OrdersScreen(),
               Scaffold(
-                drawer: CustomDrawer(),
-                appBar: AppBar(
-                  title: const Text('Home3'),
-                ),
-              ),Scaffold(
                 drawer: CustomDrawer(),
                 appBar: AppBar(
                   title: const Text('Home4'),

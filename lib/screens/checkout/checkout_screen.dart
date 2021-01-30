@@ -1,6 +1,7 @@
 import 'package:app_lembrancas_de_amor/common/price_card.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/checkout_manager.dart';
+import 'package:app_lembrancas_de_amor/models/page_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,27 @@ class CheckoutScreen extends StatelessWidget {
         ),
         body: Consumer<CheckoutManager>(
           builder: (_, checkoutManager, __){
+            if(checkoutManager.loading){
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.white),
+                    ),
+                    const SizedBox(height: 16,),
+                    Text(
+                        'Processando seu pagamento...',
+                          style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                        fontSize: 16
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }
             return ListView(
               children: <Widget>[
                 PriceCard(
@@ -31,7 +53,12 @@ class CheckoutScreen extends StatelessWidget {
                         onStockFail: (e){
                           Navigator.of(context).popUntil(
                                   (route) => route.settings.name == '/cart');
-                    });
+                    },
+                      onSuccess: (){
+                        Navigator.of(context).popUntil(
+                                (route) => route.settings.name == '/base');
+                      }
+                    );
                   },
                 )
               ],

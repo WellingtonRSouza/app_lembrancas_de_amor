@@ -1,7 +1,8 @@
 import 'package:app_lembrancas_de_amor/common/empty.card.dart';
 import 'package:app_lembrancas_de_amor/common/login.card.dart';
+import 'package:app_lembrancas_de_amor/common/order/order_tile.dart';
+import 'package:app_lembrancas_de_amor/custom_drawer/custom_drawer.dart';
 import 'package:app_lembrancas_de_amor/models/orders_manager.dart';
-import 'package:app_lembrancas_de_amor/screens/orders/components/order_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         title: const Text('Meus Pedidos'),
         centerTitle: true,

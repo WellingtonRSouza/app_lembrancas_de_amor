@@ -1,6 +1,8 @@
+import 'package:app_lembrancas_de_amor/models/admin_orders_manager.dart';
 import 'package:app_lembrancas_de_amor/models/admin_users_manager.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/home_manager.dart';
+import 'package:app_lembrancas_de_amor/models/order.dart';
 import 'package:app_lembrancas_de_amor/models/orders_manager.dart';
 import 'package:app_lembrancas_de_amor/models/product_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
@@ -8,6 +10,7 @@ import 'package:app_lembrancas_de_amor/screens/address/address.screen.dart';
 import 'package:app_lembrancas_de_amor/screens/base/base_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/cart/cart_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/checkout/checkout_screen.dart';
+import 'package:app_lembrancas_de_amor/screens/confirmation/confirmation_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/edit_product/edit_product_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/login/login_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/product/product_screen.dart';
@@ -58,6 +61,14 @@ class MyApp extends StatelessWidget {
             update: (_, userManager, adminUsersManager) =>
               adminUsersManager..updateUser(userManager),
         ),
+        ChangeNotifierProxyProvider<UserManager, AdminOrdersManager>(
+          create: (_) => AdminOrdersManager(),
+          lazy: false,
+          update: (_, userManager, adminOrdersManager) =>
+          adminOrdersManager..updateAdmin(
+            adminEnabled: userManager.adminEnabled
+          ),
+        ),
       ],
       child: MaterialApp(
         title: 'Lembranças\n de Amor\n Biscuit',
@@ -107,6 +118,12 @@ class MyApp extends StatelessWidget {
             case'/select_product':
               return MaterialPageRoute(
                   builder: (_) => SelectProductScreen()
+              );
+            case '/confirmation':
+              return MaterialPageRoute(
+                  builder: (_) => ConfirmationScreen(
+                      settings.arguments as Order
+                  )
               );
             case'/base':
             default :

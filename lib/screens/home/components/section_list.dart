@@ -2,7 +2,7 @@ import 'package:app_lembrancas_de_amor/models/home_manager.dart';
 import 'package:app_lembrancas_de_amor/models/section.dart';
 import 'package:app_lembrancas_de_amor/screens/home/components/add_tile_widget.dart';
 import 'package:app_lembrancas_de_amor/screens/home/components/item_tile.dart';
-import 'file:///D:/ProjetosFlutter/app_lembrancas_de_amor/lib/screens/home/components/section_header.dart';
+import 'package:app_lembrancas_de_amor/screens/home/components/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

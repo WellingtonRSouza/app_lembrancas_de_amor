@@ -1,6 +1,7 @@
 import 'package:app_lembrancas_de_amor/custom_drawer/custom_drawer.dart';
 import 'package:app_lembrancas_de_amor/models/page_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
+import 'package:app_lembrancas_de_amor/screens/admin_orders/admin_orders_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/admin_users/admin_users_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/home/home_screen.dart';
 import 'package:app_lembrancas_de_amor/screens/orders/orders.screen.dart';
@@ -39,12 +40,7 @@ class _BaseScreenState extends State<BaseScreen> {
               if(userManager.adminEnabled)
                 ...[
                   AdminUsersScreen(),
-                  Scaffold(
-                    drawer: CustomDrawer(),
-                    appBar: AppBar(
-                      title: const Text('Pedidos'),
-                    ),
-                  ),
+                  AdminOrdersScreen(),
                 ]
             ],
           );

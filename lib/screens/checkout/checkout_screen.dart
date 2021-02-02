@@ -1,7 +1,6 @@
 import 'package:app_lembrancas_de_amor/common/price_card.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/checkout_manager.dart';
-import 'package:app_lembrancas_de_amor/models/page_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,9 +53,13 @@ class CheckoutScreen extends StatelessWidget {
                           Navigator.of(context).popUntil(
                                   (route) => route.settings.name == '/cart');
                     },
-                      onSuccess: (){
+                      onSuccess: (order){
                         Navigator.of(context).popUntil(
                                 (route) => route.settings.name == '/base');
+                        Navigator.of(context).pushNamed(
+                            '/confirmation',
+                            arguments: order
+                        );
                       }
                     );
                   },

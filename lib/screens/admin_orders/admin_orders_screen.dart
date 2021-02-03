@@ -3,13 +3,23 @@ import 'package:app_lembrancas_de_amor/common/empty.card.dart';
 import 'package:app_lembrancas_de_amor/common/order/order_tile.dart';
 import 'package:app_lembrancas_de_amor/custom_drawer/custom_drawer.dart';
 import 'package:app_lembrancas_de_amor/models/admin_orders_manager.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:app_lembrancas_de_amor/models/order.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class AdminOrdersScreen extends StatelessWidget {
+class AdminOrdersScreen extends StatefulWidget {
+
+  @override
+  _AdminOrdersScreenState createState() => _AdminOrdersScreenState();
+}
+
+class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
+  final PanelController panelController = PanelController();
+
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
@@ -20,9 +30,9 @@ class AdminOrdersScreen extends StatelessWidget {
         builder: (_, ordersManager, __) {
           final filteredOrders = ordersManager.filteredOrders;
 
-
-
-          return Column(
+          return SlidingUpPanel(
+            controller: panelController,
+            body: Column(
               children: <Widget>[
                 if(ordersManager.userFilter != null)
                   Padding(
@@ -66,9 +76,59 @@ class AdminOrdersScreen extends StatelessWidget {
                           );
                         }
                     ),
-                  )
+                  ),
+                const SizedBox(height: 120,)
               ],
-            );
+            ),
+            minHeight: 40,
+            maxHeight: 250,
+            panel: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                GestureDetector(
+                  onTap:(){
+                    if(panelController.isPanelClosed()){
+                      panelController.open();
+                    } else {
+                      panelController.close();
+                    }
+                  },
+                  child: Container(
+                    height: 40,
+                    color: Colors.white,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Filtros',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: Status.values.map((s){
+                        return CheckboxListTile(
+                          title: Text(Order.getStatusText(s)),
+                          dense: true,
+                          activeColor: primaryColor,
+                          value: ordersManager.statusFilter.contains(s),
+                          onChanged: (v){
+                            ordersManager.setStatusFilter(
+                              status: s,
+                              enabled: v
+                            );
+                          },
+                        );
+                      }).toList(),
+                  )
+                ),
+              ],
+            ),
+          );
         },
       ),
     );

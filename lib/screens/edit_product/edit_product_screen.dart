@@ -1,3 +1,4 @@
+import 'package:app_lembrancas_de_amor/common/delete_product_dialog.dart';
 import 'package:app_lembrancas_de_amor/models/product.dart';
 import 'package:app_lembrancas_de_amor/models/product_manager.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,18 @@ class EditProductScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(editing ? 'Editar Produto' : 'Criar Produto'),
           centerTitle: true,
+          actions: <Widget>[
+            if(editing)
+              IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: (){
+                    showDialog(
+                        context: context,
+                        builder: (_) => DeleteProductDialog(product),
+                    );
+                  }
+              )
+          ],
         ),
         backgroundColor: Colors.white,
         body: Form(

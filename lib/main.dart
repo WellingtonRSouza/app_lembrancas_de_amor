@@ -4,6 +4,7 @@ import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/home_manager.dart';
 import 'package:app_lembrancas_de_amor/models/order.dart';
 import 'package:app_lembrancas_de_amor/models/orders_manager.dart';
+import 'package:app_lembrancas_de_amor/models/product.dart';
 import 'package:app_lembrancas_de_amor/models/product_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
 import 'package:app_lembrancas_de_amor/screens/address/address.screen.dart';
@@ -18,8 +19,6 @@ import 'package:app_lembrancas_de_amor/screens/select_product/select_product_scr
 import 'package:app_lembrancas_de_amor/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'models/product.dart';
 
 void main() async {
   runApp(MyApp());
@@ -81,8 +80,8 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: '/base',
         onGenerateRoute: (settings){
+          print(settings.name);
           switch(settings.name){
             case'/login':
               return MaterialPageRoute(
@@ -125,7 +124,7 @@ class MyApp extends StatelessWidget {
                       settings.arguments as Order
                   )
               );
-            case'/base':
+            case'/':
             default :
               return MaterialPageRoute(
                 builder: (_) => BaseScreen(),

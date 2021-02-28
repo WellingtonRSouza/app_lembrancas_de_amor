@@ -6,6 +6,7 @@ import 'package:app_lembrancas_de_amor/models/order.dart';
 import 'package:app_lembrancas_de_amor/models/orders_manager.dart';
 import 'package:app_lembrancas_de_amor/models/product.dart';
 import 'package:app_lembrancas_de_amor/models/product_manager.dart';
+import 'package:app_lembrancas_de_amor/models/stores_manager.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
 import 'package:app_lembrancas_de_amor/screens/address/address.screen.dart';
 import 'package:app_lembrancas_de_amor/screens/base/base_screen.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => HomeManager(),
           lazy: false,
+        ),
+        ChangeNotifierProvider(
+            create: (_) => StoresManager(),
         ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(create: (_) => CartManager(),
           lazy: false,

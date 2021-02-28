@@ -19,6 +19,7 @@ class DeleteProductDialog extends StatelessWidget {
           onPressed: () {
             context.read<ProductManager>().delete(product);
             Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
           textColor: Colors.red,
           child: const Text('Deletar Produto'),

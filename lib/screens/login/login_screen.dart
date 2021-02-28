@@ -1,6 +1,8 @@
 import 'package:app_lembrancas_de_amor/helpers/validators.dart';
 import 'package:app_lembrancas_de_amor/models/user.dart';
 import 'package:app_lembrancas_de_amor/models/user_manager.dart';
+import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -40,6 +43,16 @@ class LoginScreen extends StatelessWidget {
             key: formKey,
             child: Consumer<UserManager>(
               builder: (_, userManager, child){
+
+                if(userManager.loadingFace){
+                  return Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(primaryColor),
+                    ),
+                  );
+                }
+
                 return ListView(
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
@@ -75,49 +88,71 @@ class LoginScreen extends StatelessWidget {
                     ),
                     child,
                     const SizedBox(height: 16,),
-                    SizedBox(
-                      height: 44,
-                      child: RaisedButton(
-                        onPressed: userManager.loading ? null : (){
-                          if(formKey.currentState.validate()){
-                            userManager.signIn(
-                                user: User(
-                                    email: emailController.text,
-                                    password: passController.text
-                                ),
-                                onFail: (e){
-                                  scaffoldKey.currentState.showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Falha ao entrar:\n$e',
-                                          style: TextStyle(
-                                              fontSize: 20
-                                          ),
+                    RaisedButton(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      onPressed: userManager.loading ? null : (){
+                        if(formKey.currentState.validate()){
+                          userManager.signIn(
+                              user: User(
+                                  email: emailController.text,
+                                  password: passController.text
+                              ),
+                              onFail: (e){
+                                scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Falha ao entrar:\n$e',
+                                        style: TextStyle(
+                                            fontSize: 15
                                         ),
-                                        backgroundColor: Colors.red,
-                                      )
-                                  );
-                                },
-                                onSuccess: () {
-                                  Navigator.of(context).pop();
-                                },
-                            );
-                          }
-                        },
-                        color: Theme.of(context).primaryColor,
-                        disabledColor: Theme.of(context).primaryColor.withAlpha(100),
-                        textColor: Colors.white,
-                        child: userManager.loading ?
-                        CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(Colors.white),
-                        ) :
-                        const Text(
-                          'Entrar',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                                      ),
+                                      backgroundColor: Colors.red,
+                                    )
+                                );
+                              },
+                              onSuccess: () {
+                                Navigator.of(context).pop();
+                              },
+                          );
+                        }
+                      },
+                      color: Theme.of(context).primaryColor,
+                      disabledColor: Theme.of(context).primaryColor.withAlpha(100),
+                      textColor: Colors.white,
+                      child: userManager.loading ?
+                      CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      ) :
+                      const Text(
+                        'Entrar',
+                        style: TextStyle(
+                          fontSize: 18,
                         ),
                       ),
+                    ),
+                    SignInButton(
+                        Buttons.Facebook,
+                        text: 'Entrar com Facebook',
+                        onPressed: (){
+                          userManager.facebookLogin(
+                            onFail: (e){
+                              scaffoldKey.currentState.showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Falha ao entrar:\n$e',
+                                      style: TextStyle(
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  )
+                              );
+                            },
+                            onSuccess: () {
+                              Navigator.of(context).pop();
+                            },
+                          );
+                        }
                     )
                   ],
                 );

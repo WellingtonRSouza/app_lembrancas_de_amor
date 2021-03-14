@@ -9,7 +9,7 @@ class AddressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
         child: Consumer<CartManager>(
@@ -20,7 +20,7 @@ class AddressCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Endereço de Entrega',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,

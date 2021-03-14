@@ -15,7 +15,7 @@ class ExportAddressDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return AlertDialog(
-      title: Text('Endereço de Entrega'),
+      title: const Text('Endereço de Entrega'),
       content: Screenshot(
         controller: screenshotController,
         child: Container(
@@ -29,7 +29,7 @@ class ExportAddressDialog extends StatelessWidget {
           ),
         ),
       ),
-      contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      contentPadding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       actions: <Widget>[
         FlatButton(
             onPressed: () async {

@@ -25,7 +25,7 @@ class PriceCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               'Resumo do Pedido',
               textAlign: TextAlign.start,
               style: TextStyle(
@@ -57,7 +57,7 @@ class PriceCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-              Text('Total',
+              const Text('Total',
                 style: TextStyle(fontWeight: FontWeight.w500),
                 ),
               Text(

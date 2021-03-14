@@ -38,7 +38,7 @@ class ProductManager extends ChangeNotifier {
   }
 
   
-  void _loadAllProducts() async {
+  Future<void> _loadAllProducts() async {
     final QuerySnapshot snapProducts =
     await firestore.collection('products')
         .where('deleted', isEqualTo: false).getDocuments();

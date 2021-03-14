@@ -65,6 +65,7 @@ class Store {
     return '${period['from'].formatted()} - ${period['to'].formatted()}';
   }
 
+  // ignore: unnecessary_parenthesis
   String get cleanPhone => phone.replaceAll(RegExp((r"[^\d]")), "");
 
   void updateStatus() {

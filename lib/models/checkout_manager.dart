@@ -1,4 +1,5 @@
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
+import 'package:app_lembrancas_de_amor/models/credit_card.dart';
 import 'package:app_lembrancas_de_amor/models/order.dart';
 import 'package:app_lembrancas_de_amor/models/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +24,7 @@ class CheckoutManager extends ChangeNotifier {
     this.cartManager = cartManager;
   }
 
-  Future <void> checkout({Function onStockFail, Function onSuccess}) async {
+  Future <void> checkout({CreditCard creditCard, Function onStockFail, Function onSuccess}) async {
     loading = true;
     try {
       await _decrementStock();

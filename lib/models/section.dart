@@ -81,7 +81,7 @@ class Section extends ChangeNotifier {
               original.image as String
           );
           await ref.delete();
-          // ignore: empty catches
+          // ignore: empty catches, empty_catches
         } catch(e){}
       }
     }

@@ -23,7 +23,7 @@ class EmptyCard extends StatelessWidget {
           const SizedBox(height: 16.0,),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,

@@ -1,6 +1,8 @@
 import 'package:app_lembrancas_de_amor/common/price_card.dart';
 import 'package:app_lembrancas_de_amor/models/cart_manager.dart';
 import 'package:app_lembrancas_de_amor/models/checkout_manager.dart';
+import 'package:app_lembrancas_de_amor/models/credit_card.dart';
+import 'package:app_lembrancas_de_amor/screens/checkout/components/cpf_field.dart';
 import 'package:app_lembrancas_de_amor/screens/checkout/components/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,8 @@ class CheckoutScreen extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final CreditCard creditCard = CreditCard();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,13 @@ class CheckoutScreen extends StatelessWidget {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
-                      CircularProgressIndicator(
+                      const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(Colors.white),
                       ),
                       const SizedBox(height: 16,),
-                      Text(
+                      const Text(
                         'Processando seu pagamento...',
                         style: TextStyle(
                             color: Colors.white,
@@ -54,14 +59,16 @@ class CheckoutScreen extends StatelessWidget {
                 key: formKey,
                 child: ListView(
                   children: <Widget>[
-                    CreditCardWidget(),
+                    CreditCardWidget(creditCard),
+                    CpfField(),
                     PriceCard(
                       buttonText: 'Finalizar Pedido',
                       onPressed: (){
                         if(formKey.currentState.validate()){
-                          print('enviar');
+                          formKey.currentState.save();
                         }
-                          /*checkoutManager.checkout(
+                          checkoutManager.checkout(
+                          creditCard: creditCard,
                               onStockFail: (e){
                                 Navigator.of(context).popUntil(
                                         (route) => route.settings.name == '/cart');
@@ -75,9 +82,8 @@ class CheckoutScreen extends StatelessWidget {
                                 );
                               }
                           );
-                        }*/
-                      },
-                    )
+                        }
+                    ),
                   ],
                 ),
               );

@@ -21,10 +21,8 @@ import 'package:app_lembrancas_de_amor/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
   runApp(MyApp());
-
-
 }
 
 class MyApp extends StatelessWidget {
@@ -85,7 +83,6 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         onGenerateRoute: (settings){
-          print(settings.name);
           switch(settings.name){
             case'/login':
               return MaterialPageRoute(

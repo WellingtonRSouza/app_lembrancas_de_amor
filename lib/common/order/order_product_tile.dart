@@ -31,14 +31,14 @@ class OrderProductTile extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     cartProduct.product.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17.0,
                     ),
                   ),
                   Text(
                     'Tamanho: ${cartProduct.size}',
-                    style: TextStyle(fontWeight: FontWeight.w300),
+                    style: const TextStyle(fontWeight: FontWeight.w300),
                   ),
                   Text(
                     'R\$ ${(cartProduct.fixedPrice ?? cartProduct.unitPrice)
